@@ -1,0 +1,24 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * Copyright (C) 2021, Bin Meng <bmeng.cn@gmail.com>
+ */
+
+/dts-v1/;
+
+#include "binman.dtsi"
+
+/ {
+
+    model = "snps,emsdp";
+
+    #address-cells = <1>;
+    #size-cells = <1>;
+
+    uart@12500000 {
+		compatible = "ns16550a", "ns16550", "ns8250";
+		reg = <0x12500000 0x100>;
+		clock-frequency = <1152000>;
+		interrupts = <10>;
+		reg-shift = <0>;
+	};
+};
