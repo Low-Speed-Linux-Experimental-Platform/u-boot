@@ -1,0 +1,33 @@
+if TARGET_LLEP
+
+config SYS_BOARD
+	default "llep"
+
+config SYS_VENDOR
+	default "emulation"
+
+config SYS_CPU
+	default "generic"
+
+config SYS_CONFIG_NAME
+	default "llep"
+
+config TEXT_BASE
+	default 0x03000000
+
+config SPL_TEXT_BASE
+	default 0x04000000
+
+config SPL_OPENSBI_LOAD_ADDR
+	hex
+	default 0x02000000
+
+config PRE_CON_BUF_ADDR
+	hex
+	default 0x02a00000
+
+config BOARD_SPECIFIC_OPTIONS # dummy
+	def_bool y
+	select GENERIC_RISCV
+
+endif
