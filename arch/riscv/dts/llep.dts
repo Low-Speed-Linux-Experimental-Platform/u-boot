@@ -20,5 +20,6 @@
 		clock-frequency = <1152000>;
 		interrupts = <10>;
 		reg-shift = <0>;
+		bootph-all;
 	};
 };
