@@ -87,26 +87,35 @@ static int hist_add_idx;
 static int hist_cur = -1;
 static unsigned hist_num;
 
+#ifndef CONFIG_CMD_HISTORY_USE_CALLOC
+static char hist_data[HIST_MAX][HIST_SIZE + 1];
+#endif
 static char *hist_list[HIST_MAX];
 
 #define add_idx_minus_one() ((hist_add_idx == 0) ? hist_max : hist_add_idx-1)
 
 static int hist_init(void)
 {
-	unsigned char *hist;
 	int i;
 
-	hist_max = 0;
-	hist_add_idx = 0;
-	hist_cur = -1;
-	hist_num = 0;
-
-	hist = calloc(HIST_MAX, HIST_SIZE + 1);
+#ifndef CONFIG_CMD_HISTORY_USE_CALLOC
+	for (i = 0; i < HIST_MAX; i++) {
+		hist_list[i] = hist_data[i];
+		hist_list[i][0] = '\0';
+	}
+#else
+	unsigned char *hist = calloc(HIST_MAX, HIST_SIZE + 1);
 	if (!hist)
 		panic("%s: calloc: out of memory!\n", __func__);
 
 	for (i = 0; i < HIST_MAX; i++)
 		hist_list[i] = hist + (i * (HIST_SIZE + 1));
+#endif
+
+	hist_max = 0;
+	hist_add_idx = 0;
+	hist_cur = -1;
+	hist_num = 0;
 
 	return 0;
 }
