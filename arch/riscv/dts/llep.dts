@@ -14,6 +14,10 @@
     #address-cells = <1>;
     #size-cells = <1>;
 
+    cpus: cpus {
+    		timebase-frequency = <100000000>;
+    };
+
     uart@12500000 {
 		compatible = "ns16550a", "ns16550", "ns8250";
 		reg = <0x12500000 0x100>;
@@ -22,4 +26,16 @@
 		reg-shift = <0>;
 		bootph-all;
 	};
+
+	memory {
+	    device_type = "memory";
+    	#address-cells = <1>;
+    	#size-cells = <1>;
+    	reg = <0x02000000 0x0a000000>;
+    	auto-size;
+    };
+
+    timer {
+    		compatible = "riscv,timer";
+    };
 };
