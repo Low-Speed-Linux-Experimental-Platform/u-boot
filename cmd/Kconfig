@@ -184,6 +184,7 @@ config CMD_FWU_METADATA
 
 config CMD_HISTORY
 	bool "history"
+	default y
 	depends on CMDLINE_EDITING
 	help
 	  Show the command-line history, i.e. a list of commands that are in
