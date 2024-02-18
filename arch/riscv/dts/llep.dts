@@ -6,6 +6,7 @@
 /dts-v1/;
 
 #include "binman.dtsi"
+#include "configs/llep.h"
 
 / {
 
@@ -31,7 +32,7 @@
 	    device_type = "memory";
     	#address-cells = <1>;
     	#size-cells = <1>;
-    	reg = <0x02000000 0x0a000000>;
+    	reg = <CFG_SYS_SDRAM_BASE CFG_SYS_SDRAM_SIZE>;
     	auto-size;
     };
 
