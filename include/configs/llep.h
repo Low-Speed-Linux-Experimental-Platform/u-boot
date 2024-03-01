@@ -8,8 +8,8 @@
 
 #include <linux/sizes.h>
 
-#define CFG_SYS_SDRAM_BASE		0x02000000
-#define CFG_SYS_SDRAM_SIZE		0x01000000
+#define CFG_SYS_SDRAM_BASE		0x80000000
+#define CFG_SYS_SDRAM_SIZE		0x00fa0000
 #define RISCV_SMODE_TIMER_FREQ		10000
 
 /* Environment options */
