@@ -4,7 +4,7 @@
  */
 
 /dts-v1/;
-
+#include <dt-bindings/interrupt-controller/irq.h>
 #include "configs/llep.h"
 
 / {
@@ -45,6 +45,7 @@
 	soc {
 		#address-cells = <1>;
 		#size-cells = <1>;
+		interrupt-parent = <&plic>;
 		compatible = "simple-bus";
 		ranges;
 
@@ -52,12 +53,21 @@
 			compatible = "snps,dw-apb-uart", "ns16550a", "ns16550", "ns8250";
 			reg = <0x12500000 0x100>;
 			clock-frequency = <1152000>;
-			interrupts = <10>;
 			reg-shift = <0>;
+			interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
 			reg-io-width = <1>;
-			interrupt-parent = <&cpu0_intc>;
 			status = "okay";
 			bootph-all;
+		};
+
+		plic: interrupt-controller@c000000 {
+			compatible = "thead,c900-plic";
+			reg = <0xc000000 0x4000000>;
+			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			#address-cells = <0>;
+			riscv,ndev = <16>;
 		};
 	};
 
