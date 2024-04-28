@@ -21,7 +21,7 @@
 #define CFG_EXTRA_ENV_SETTINGS \
 	"fdt_high=0x81ffd800\0" \
 	"kernel_addr_r=0x80000000\0" \
-	"kernel_comp_addr_r=0x813a0000\0" \
+	"kernel_comp_addr_r=0x81000000\0" \
 	"simple_env=setenv bootargs earlycon=sbi console=ttyS0,115200 root=/dev/ram0\0" \
 	"simpleboot=run simple_env && unzip $kernel_comp_addr_r $kernel_addr_r && bootm $kernel_addr_r - $fdt_high\0" \
 	"bootcmd=run simpleboot\0"
